@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">App-PetShop</string>
+    <string name="todo">TODO</string>
+    <string name="petshoop_appName">PetShoop</string>
+    <string name="btnDeleteAndUpdate" />
+
+    <string-array name="animal_types">
+        <item>Tipo do animal: </item>
+        <item>CACHORRO</item>
+        <item>GATO</item>
+        <item>PASSARO</item>
+        <item>PEIXE</item>
+        <item>REPTIL</item>
+    </string-array>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>

@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/petImage"
+        android:layout_width="57dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="pet"
+        android:src="@drawable/ic_pet_placeholder" />
+
+    <LinearLayout
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTypeAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CACHORRO"
+            android:textColor="#898989"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/petName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marley"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/petBreed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ViraLATA"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="0.1"
+        android:backgroundTint="#F10505"
+        android:scaleType="center"
+        app:tint="#000000"
+        app:srcCompat="@drawable/outline_remove_circle_outline_24" />
+
+    <ImageButton
+        android:id="@+id/btnUpdate"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="0.1"
+        android:backgroundTint="#FFC107"
+        app:tint="#000000"
+        app:srcCompat="@drawable/baseline_create_24" />
+
+</LinearLayout>
