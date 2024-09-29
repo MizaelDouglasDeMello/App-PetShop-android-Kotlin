@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         with(binding) {
             rcListPet.layoutManager = LinearLayoutManager(this@MainActivity)
-            petAdapter = PetAdapter(petList)
+            petAdapter = PetAdapter(petList) { }
             rcListPet.adapter = petAdapter
         }
         petAdapter.setButtonsVisibility(View.GONE)
@@ -51,6 +51,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, FormAddPetActivity::class.java)
             startActivity(intent)
         }
+
+        binding.faBtn.setOnClickListener{
+            val intent = Intent(this, ListPetActivity::class.java)
+            startActivity(intent)
+        }
+
 //        binding.bottomNavigation.setOnClickListener{
 //            val intent = Intent(this, MainActivity::class.java)
 //            startActivity(intent)
@@ -89,5 +95,11 @@ class MainActivity : AppCompatActivity() {
         cursor.close()
         Log.d("MainActivity_test", "Total pets after DB load: ${petList.size}")
         petAdapter.updatePetList(petList)
+        if (petList.isEmpty()) {
+            binding.txtItemNotfound.visibility = View.VISIBLE
+            binding.txtItemNotfound.text = "No pets found"
+        } else {
+            binding.txtItemNotfound.visibility = View.GONE
+        }
     }
 }

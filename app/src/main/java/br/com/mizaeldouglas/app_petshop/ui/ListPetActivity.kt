@@ -3,6 +3,8 @@ package br.com.mizaeldouglas.app_petshop.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -44,15 +46,34 @@ class ListPetActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.rcListPet)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        petAdapter = PetAdapter(petList)
+        petAdapter = PetAdapter(petList) { pet ->
+            removePet(pet)
+        }
         recyclerView.adapter = petAdapter
 
-//        binding.bottomNavigation.setOnClickListener{
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.faBtnHome.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         loadPets()
+    }
+
+    private fun removePet(pet: Pet) {
+        val dbHelper = PetDatabaseHelper(this)
+        val db = dbHelper.writableDatabase
+        val selection = "$COLUMN_ID = ?"
+        val selectionArgs = arrayOf(pet.id.toString())
+        db.delete(TABLE_NAME, selection, selectionArgs)
+        petList.remove(pet)
+        petAdapter.updatePetList(petList)
+        Toast.makeText(this, "Animal removido com sucesso!!", Toast.LENGTH_SHORT).show()
+        if (petList.isEmpty()) {
+            binding.txtInVisible.visibility = View.VISIBLE
+            binding.txtInVisible.text = "No pets found"
+        } else {
+            binding.txtInVisible.visibility = View.GONE
+        }
     }
 
     private fun loadPets() {
@@ -82,11 +103,17 @@ class ListPetActivity : AppCompatActivity() {
 
                 Log.d("MainActivity_test", "Pet from DB - ID: $id, Name: $name, Breed: $breed")
 
-                petList.add(Pet(id, name, breed,type))
+                petList.add(Pet(id, name, breed, type))
             }
         }
         cursor.close()
         Log.d("MainActivity_test", "Total pets after DB load: ${petList.size}")
         petAdapter.updatePetList(petList)
+        if (petList.isEmpty()) {
+            binding.txtInVisible.visibility = View.VISIBLE
+            binding.txtInVisible.text = "No pets found"
+        } else {
+            binding.txtInVisible.visibility = View.GONE
+        }
     }
 }

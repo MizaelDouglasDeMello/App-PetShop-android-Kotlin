@@ -57,13 +57,4 @@
         app:tint="#000000"
         app:srcCompat="@drawable/outline_remove_circle_outline_24" />
 
-    <ImageButton
-        android:id="@+id/btnUpdate"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_weight="0.1"
-        android:backgroundTint="#FFC107"
-        app:tint="#000000"
-        app:srcCompat="@drawable/baseline_create_24" />
-
 </LinearLayout>

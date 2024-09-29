@@ -35,10 +35,10 @@ class FormAddPetActivity : AppCompatActivity() {
                 send()
             }
         }
-//        binding.bottomNavigation.setOnClickListener{
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.faListPetBtnHome.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         val spinner: Spinner = binding.spinnerAnimalType
         ArrayAdapter.createFromResource(
@@ -78,7 +78,7 @@ class FormAddPetActivity : AppCompatActivity() {
         val newRowId = db.insert(PetDatabaseHelper.TABLE_NAME, null,values)
         if (newRowId != -1L) {
             Toast.makeText(this, "Animal cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, ListPetActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         } else {
             Toast.makeText(this, "Erro ao cadastrar o animal.", Toast.LENGTH_SHORT).show()

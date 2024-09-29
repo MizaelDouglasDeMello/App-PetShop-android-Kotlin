@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.mizaeldouglas.app_petshop.databinding.ItemPetBinding
 import br.com.mizaeldouglas.app_petshop.model.Pet
 
-class PetAdapter(private var petList: MutableList<Pet>): RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
+class PetAdapter(private var petList: MutableList<Pet>,private val onDeleteClick: (Pet) -> Unit ): RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
     private var buttonsVisibility: Int = View.VISIBLE
 
     class PetViewHolder(val binding: ItemPetBinding): RecyclerView.ViewHolder(binding.root)
@@ -26,7 +26,11 @@ class PetAdapter(private var petList: MutableList<Pet>): RecyclerView.Adapter<Pe
             petBreed.text = currentPet.breed
             txtTypeAnimal.text = currentPet.type
             btnDelete.visibility = buttonsVisibility
-            btnUpdate.visibility = buttonsVisibility
+//            btnUpdate.visibility = buttonsVisibility
+
+            btnDelete.setOnClickListener {
+                onDeleteClick(currentPet)
+            }
         }
     }
 
